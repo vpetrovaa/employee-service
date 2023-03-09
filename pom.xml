@@ -28,6 +28,7 @@
 		<httpcomponents.version>5.2.1</httpcomponents.version>
 		<eureka.version>4.0.0</eureka.version>
 		<openfeign.version>4.0.1</openfeign.version>
+		<r2dbc.version>1.0.0.RELEASE</r2dbc.version>
 	</properties>
 
 	<dependencies>
@@ -84,6 +85,17 @@
 			<groupId>jakarta.validation</groupId>
 			<artifactId>jakarta.validation-api</artifactId>
 			<version>${validation.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-r2dbc</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>r2dbc-postgresql</artifactId>
+			<version>${r2dbc.version}</version>
 		</dependency>
 
 	</dependencies>

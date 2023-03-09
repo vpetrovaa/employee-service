@@ -5,8 +5,8 @@ spring:
     name: comment
   config:
     import: optional:file:.env[.properties]
-  datasource:
-    url: jdbc:postgresql://${POSTGRES_HOST}:5432/postgres?currentSchema=employees_schema
+  r2dbc:
+    url: r2dbc:postgresql://${POSTGRES_HOST}:5432/postgres?currentSchema=employees_schema
     username: ${POSTGRES_USERNAME}
     password: ${POSTGRES_PASSWORD}
   jpa:
