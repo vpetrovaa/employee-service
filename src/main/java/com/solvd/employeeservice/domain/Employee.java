@@ -1,10 +1,12 @@
 package com.solvd.employeeservice.domain;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
 import lombok.Data;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
 
 @Entity
-@Table(name = "employees")
+@Table(name = "employee")
 @Data
 public class Employee {
 
@@ -13,13 +15,10 @@ public class Employee {
 
     private String email;
 
-    @Column(name = "first_name")
     private String name;
 
-    @Column(name = "last_name")
     private String surname;
 
-    @Column(name = "job_title")
     private String jobTitle;
 
     private String company;

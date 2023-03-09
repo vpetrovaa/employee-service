@@ -23,8 +23,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public Mono<Employee> create(Employee employee) {
         return employeeRepository.existsByEmail(employee.getEmail())
-                .flatMap(isExist ->
-                {
+                .flatMap(isExist -> {
                     if (isExist) {
                         return Mono.error(new ResourceAlreadyExistsException("Employee with email " + employee.getEmail() + " already exists"));
                     }

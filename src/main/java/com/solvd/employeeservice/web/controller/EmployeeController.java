@@ -19,7 +19,7 @@ public class EmployeeController {
     private final EmployeeMapper employeeMapper;
 
     @PostMapping
-    public Mono<EmployeeDto> create(@RequestBody EmployeeDto employeeDto) {
+    public Mono<EmployeeDto> create(@RequestBody @Validated EmployeeDto employeeDto) {
         Employee employeeMapped = employeeMapper.toEntity(employeeDto);
         Mono<Employee> employee = employeeService.create(employeeMapped);
         return employee.map(employeeMapper::toDto);
