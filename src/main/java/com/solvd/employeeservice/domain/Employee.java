@@ -1,11 +1,9 @@
 package com.solvd.employeeservice.domain;
 
-import jakarta.persistence.Entity;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
-@Entity
 @Table(name = "employee")
 @Data
 public class Employee {

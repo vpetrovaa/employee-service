@@ -9,10 +9,6 @@ spring:
     url: r2dbc:postgresql://${POSTGRES_HOST}:5432/postgres?currentSchema=employees_schema
     username: ${POSTGRES_USERNAME}
     password: ${POSTGRES_PASSWORD}
-  jpa:
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
-    hibernate:
-      ddl-auto: none
   jackson:
     default-property-inclusion: non_null
   liquibase:
