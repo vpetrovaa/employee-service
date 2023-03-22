@@ -4,7 +4,7 @@ import com.solvd.employeeservice.domain.Employee;
 import com.solvd.employeeservice.domain.exception.ResourceAlreadyExistsException;
 import com.solvd.employeeservice.repository.EmployeeRepository;
 import com.solvd.employeeservice.service.EmployeeService;
-import com.solvd.employeeservice.web.mapper.EmployeeMapper;
+import com.solvd.employeeservice.service.SequenceGeneratorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
@@ -15,7 +15,7 @@ import reactor.core.publisher.Mono;
 public class EmployeeServiceImpl implements EmployeeService {
 
     private final EmployeeRepository employeeRepository;
-    private final EmployeeMapper employeeMapper;
+    private final SequenceGeneratorService sequenceGeneratorService;
 
     @Override
     public Mono<Employee> findById(Long id) {
@@ -29,6 +29,7 @@ public class EmployeeServiceImpl implements EmployeeService {
                     if (isExist) {
                         return Mono.error(new ResourceAlreadyExistsException("Employee with email " + employee.getEmail() + " already exists"));
                     }
+                    employee.setId(sequenceGeneratorService.generateSequence(Employee.SEQUENCE_NAME));
                     return employeeRepository.save(employee);
                 });
     }
