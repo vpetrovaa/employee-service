@@ -2,9 +2,9 @@ package com.solvd.employeeservice.domain;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Table;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Table(name = "employee")
+@Document(collection = "employees")
 @Data
 public class Employee {
 
