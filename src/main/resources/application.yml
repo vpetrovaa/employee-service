@@ -2,14 +2,18 @@ server:
   port: 8086
 spring:
   application:
-    name: employee
+    name: employees
   config:
     import: optional:file:.env[.properties]
-  r2dbc:
-    url: r2dbc:postgresql://${POSTGRES_HOST}:5432/postgres?currentSchema=employees_schema
-    username: ${POSTGRES_USERNAME}
-    password: ${POSTGRES_PASSWORD}
-  jackson:
-    default-property-inclusion: non_null
-  liquibase:
-    change-log: classpath:db.changelog/db.changelog-master.yaml
+  data:
+    mongodb:
+      database: employees-db
+      host: ${MONGODB_HOST}
+      port: ${MONGODB_PORT}
+  autoconfigure:
+    exclude=org:
+      springframework:
+        boot:
+          autoconfigure:
+            jdbc:
+              DataSourceAutoConfiguration:
