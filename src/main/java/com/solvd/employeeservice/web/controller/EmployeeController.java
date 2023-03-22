@@ -37,4 +37,10 @@ public class EmployeeController {
         return employee.map(employeeMapper::toDto);
     }
 
+    @GetMapping("/company/{company}")
+    public Flux<EmployeeDto> findById(@PathVariable String company) {
+        Flux<Employee> employees = employeeService.findAllByCompany(company);
+        return employees.map(employeeMapper::toDto);
+    }
+
 }

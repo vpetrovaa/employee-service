@@ -4,6 +4,7 @@ import com.solvd.employeeservice.domain.Employee;
 import com.solvd.employeeservice.domain.exception.ResourceAlreadyExistsException;
 import com.solvd.employeeservice.repository.EmployeeRepository;
 import com.solvd.employeeservice.service.EmployeeService;
+import com.solvd.employeeservice.web.mapper.EmployeeMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
@@ -14,6 +15,7 @@ import reactor.core.publisher.Mono;
 public class EmployeeServiceImpl implements EmployeeService {
 
     private final EmployeeRepository employeeRepository;
+    private final EmployeeMapper employeeMapper;
 
     @Override
     public Mono<Employee> findById(Long id) {
@@ -34,6 +36,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public Flux<Employee> findAll() {
         return employeeRepository.findAll();
+    }
+
+    @Override
+    public Flux<Employee> findAllByCompany(String company) {
+        return employeeRepository.findAllByCompany(company);
     }
 
 }
