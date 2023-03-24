@@ -11,4 +11,6 @@ public interface EmployeeRepository extends ReactiveMongoRepository<Employee, Lo
 
     Flux<Employee> findAllByCompany(String company);
 
+    Mono<Employee> findById(String id);
+
 }
