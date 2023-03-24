@@ -6,7 +6,7 @@ import reactor.core.publisher.Mono;
 
 public interface EmployeeService {
 
-    Mono<Employee> findById(Long id);
+    Mono<Employee> findById(String id);
 
     Mono<Employee> create(Employee employee);
 

@@ -32,13 +32,13 @@ public class EmployeeController {
     }
 
     @GetMapping("/{id}")
-    public Mono<EmployeeDto> findById(@PathVariable Long id) {
+    public Mono<EmployeeDto> findById(@PathVariable String id) {
         Mono<Employee> employee = employeeService.findById(id);
         return employee.map(employeeMapper::toDto);
     }
 
     @GetMapping("/company/{company}")
-    public Flux<EmployeeDto> findById(@PathVariable String company) {
+    public Flux<EmployeeDto> findByCompanyId(@PathVariable String company) {
         Flux<Employee> employees = employeeService.findAllByCompany(company);
         return employees.map(employeeMapper::toDto);
     }
