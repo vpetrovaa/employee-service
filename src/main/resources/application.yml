@@ -6,9 +6,19 @@ server:
     import: optional:file:.env[.properties]
   data:
     mongodb:
-      database: employees-db
+      database: ${MONGODB_DATABASE}
       host: ${MONGODB_HOST}
       port: ${MONGODB_PORT}
+      username: ${MONGODB_USERNAME}
+      password: ${MONGODB_PASSWORD}
+      authentication-database: admin
+  liquibase:
+    change-log: classpath:db.changelog/db.changelog-master.yaml
+    default-schema: ${MONGODB_DATABASE}
+    url: jdbc:mongodb://${MONGODB_HOST}:27017/${MONGODB_DATABASE}
+    password: ${MONGODB_USERNAME}
+    user: ${MONGODB_PASSWORD}
+    driver-class-name: liquibase.ext.mongodb.database.MongoClientDriver
   autoconfigure:
     exclude=org:
       springframework:
