@@ -29,12 +29,12 @@ spec:
                 configMapKeyRef:
                   name: films-configmap
                   key: JDBC_LOG_LEVEL
-            - name: MONGO_INITDB_ROOT_USERNAME
+            - name: MONGO_USERNAME
               valueFrom:
                 secretKeyRef:
                   name: mongo-secrets
                   key: MONGODB_USERNAME
-            - name: MONGO_INITDB_ROOT_PASSWORD
+            - name: MONGO_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: mongo-secrets
