@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mongo-configmap
+data:
+  MONGODB_DATABASE: employees
+  MONGODB_HOST: mongo

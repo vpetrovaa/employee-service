@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: employees-configmap
+data:
+  JDBC_LOG_LEVEL: INFO
+  EVENTS_LOG_LEVEL: INFO
