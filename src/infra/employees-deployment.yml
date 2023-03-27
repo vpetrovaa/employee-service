@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: employees
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: employees
+  template:
+    metadata:
+      labels:
+        app: employees
+    spec:
+      containers:
+        - name: employees
+          image: vpetrovaa/employees:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8086
+          env:
+            - name: EVENTS_LOG_LEVEL
+              valueFrom:
+                configMapKeyRef:
+                  name: films-configmap
+                  key: EVENTS_LOG_LEVEL
+            - name: JDBC_LOG_LEVEL
+              valueFrom:
+                configMapKeyRef:
+                  name: films-configmap
+                  key: JDBC_LOG_LEVEL
+            - name: MONGO_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-secrets
+                  key: MONGODB_USERNAME
+            - name: MONGO_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-secrets
+                  key: MONGODB_PASSWORD
+            - name: MONGODB_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  name: mongo-configmap
+                  key: MONGODB_DATABASE
+            - name: MONGODB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: mongo-configmap
+                  key: MONGODB_HOST
